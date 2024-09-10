@@ -1,0 +1,126 @@
+@use "sass:math";
+
+/**
+* negative percent for darker shades
+* positive percent for lighter shades
+* 
+* known issue: if color is white or black it will not work as expected.
+*/
+@function getShade($color, $percent) {
+	@if $percent > 0% {
+		@return mix(black, $color, $percent);
+	}
+
+	@if $percent < 0% {
+		@return mix(white, $color, math.abs($percent));
+	}
+
+	@return $color;
+}
+
+@mixin theme($theme) {
+	$primaryColor: map-get(
+		$map: $theme,
+		$key: primary,
+	);
+	$secondaryColor: map-get(
+		$map: $theme,
+		$key: secondary,
+	);
+	$accentColor: map-get(
+		$map: $theme,
+		$key: accent,
+	);
+
+	$dangerColor: map-get(
+		$map: $theme,
+		$key: danger,
+	);
+	$infoColor: map-get(
+		$map: $theme,
+		$key: info,
+	);
+	$successColor: map-get(
+		$map: $theme,
+		$key: success,
+	);
+
+	$primary-dark-90: getShade($primaryColor, 90%);
+	$primary-dark-80: getShade($primaryColor, 80%);
+	$primary-dark-70: getShade($primaryColor, 70%);
+	$primary-dark-60: getShade($primaryColor, 60%);
+	$primary-dark-50: getShade($primaryColor, 50%);
+	$primary-dark-40: getShade($primaryColor, 40%);
+	$primary-dark-30: getShade($primaryColor, 30%);
+	$primary-dark-20: getShade($primaryColor, 20%);
+	$primary-dark-10: getShade($primaryColor, 10%);
+	$primary: $primaryColor;
+	$primary-light-10: getShade($primaryColor, -10%);
+	$primary-light-20: getShade($primaryColor, -20%);
+	$primary-light-30: getShade($primaryColor, -30%);
+	$primary-light-40: getShade($primaryColor, -40%);
+	$primary-light-50: getShade($primaryColor, -50%);
+	$primary-light-60: getShade($primaryColor, -60%);
+	$primary-light-70: getShade($primaryColor, -70%);
+	$primary-light-80: getShade($primaryColor, -80%);
+	$primary-light-90: getShade($primaryColor, -90%);
+
+	$secondary-dark-80: getShade($secondaryColor, 80%);
+	$secondary-dark-70: getShade($secondaryColor, 70%);
+	$secondary-dark-60: getShade($secondaryColor, 60%);
+	$secondary-dark-50: getShade($secondaryColor, 50%);
+	$secondary-dark-40: getShade($secondaryColor, 40%);
+	$secondary-dark-30: getShade($secondaryColor, 30%);
+	$secondary-dark-20: getShade($secondaryColor, 20%);
+	$secondary-dark-10: getShade($secondaryColor, 10%);
+	$secondary-dark-90: getShade($secondaryColor, 90%);
+	$secondary: $secondaryColor;
+	$secondary-light-10: getShade($secondaryColor, -10%);
+	$secondary-light-20: getShade($secondaryColor, -20%);
+	$secondary-light-30: getShade($secondaryColor, -30%);
+	$secondary-light-40: getShade($secondaryColor, -40%);
+	$secondary-light-50: getShade($secondaryColor, -50%);
+	$secondary-light-60: getShade($secondaryColor, -60%);
+	$secondary-light-70: getShade($secondaryColor, -70%);
+	$secondary-light-80: getShade($secondaryColor, -80%);
+	$secondary-light-90: getShade($secondaryColor, -90%);
+
+	$accent-dark-80: getShade($accentColor, 80%);
+	$accent-dark-70: getShade($accentColor, 70%);
+	$accent-dark-60: getShade($accentColor, 60%);
+	$accent-dark-50: getShade($accentColor, 50%);
+	$accent-dark-40: getShade($accentColor, 40%);
+	$accent-dark-30: getShade($accentColor, 30%);
+	$accent-dark-20: getShade($accentColor, 20%);
+	$accent-dark-10: getShade($accentColor, 10%);
+	$accent-dark-90: getShade($accentColor, 90%);
+	$accent: $accentColor;
+	$accent-light-10: getShade($accentColor, -10%);
+	$accent-light-20: getShade($accentColor, -20%);
+	$accent-light-30: getShade($accentColor, -30%);
+	$accent-light-40: getShade($accentColor, -40%);
+	$accent-light-50: getShade($accentColor, -50%);
+	$accent-light-60: getShade($accentColor, -60%);
+	$accent-light-70: getShade($accentColor, -70%);
+	$accent-light-80: getShade($accentColor, -80%);
+	$accent-light-90: getShade($accentColor, -90%);
+
+	:root {
+		--text-color: #{$primary};
+		--background-color: #{$secondary};
+
+		--button-text-color: #{$primary};
+		--button-border-color: #{$primary};
+		--button-background-color: #{$accent};
+		--button-hover-color: #{$accent-light-20};
+		--button-active-color: #{$accent-dark-10};
+
+		--shadow-color: #{$accent-light-10};
+
+		--danger-color: #{$dangerColor};
+		--info-color: #{$infoColor};
+		--success-color: #{$successColor};
+
+		--svg-bg-color: #{$primary-light-30};
+	}
+}

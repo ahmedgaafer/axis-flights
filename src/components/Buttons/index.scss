@@ -1,0 +1,76 @@
+@use "../../theme/utilities.scss" as *;
+
+@mixin ButtonSkin(
+	$color,
+	$background-color,
+	$border-color,
+	$shadow-color,
+	$hover-color,
+	$active-color
+) {
+	background-color: $background-color;
+	color: $color;
+	border-color: $border-color;
+
+	filter: drop-shadow(3px 3px 3px $shadow-color);
+
+	&:hover {
+		background-color: $hover-color;
+	}
+
+	&:active {
+		translate: 3px 3px;
+
+		filter: drop-shadow(0 0 0 $shadow-color);
+		background-color: $active-color;
+	}
+}
+
+button {
+	padding: $push-unit * 2;
+	font-size: 1rem;
+	border: 0.5px solid;
+	border-radius: 4px;
+
+	cursor: pointer;
+	transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+		color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+	&:focus,
+	&:focus-visible {
+		outline: 4px auto -webkit-focus-ring-color;
+	}
+
+	&.primary {
+		@include ButtonSkin(
+			var(--text-color),
+			var(--button-background-color),
+			var(--button-border-color),
+			var(--shadow-color),
+			var(--button-hover-color),
+			var(--button-active-color)
+		);
+	}
+
+	&.secondary {
+		@include ButtonSkin(
+			var(--text-color),
+			#00000000,
+			var(--button-border-color),
+			var(--shadow-color),
+			var(--button-hover-color),
+			var(--button-active-color)
+		);
+	}
+
+	&.danger {
+		@include ButtonSkin(
+			var(--text-color),
+			var(--danger-color),
+			var(--button-border-color),
+			var(--danger-color),
+			var(--button-hover-color),
+			var(--button-active-color)
+		);
+	}
+}

@@ -30,6 +30,4 @@ To preview the mock design of the project please go [HERE](https://excalidraw.co
 
 [react upload](https://codesandbox.io/p/sandbox/react-images-uploading-demo-typescript-forked-87kvdp?file=%2Fsrc%2FApp.tsx%3A14%2C15-14%2C24)
 
-[useDebounce](https://www.npmjs.com/package/@uidotdev/usehooks?activeTab=code) and search
-
 [loop video](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#loop)
