@@ -4,6 +4,8 @@
 
 - [react-images-uploading](https://www.npmjs.com/package/react-images-uploading): for image uploading form
 - [react-icons](https://www.npmjs.com/package/react-icons) For icons throughout the app
+- [react-toastify](https://www.npmjs.com/package/react-toastify) to show toast messages
+- [react-modal](https://www.npmjs.com/package/react-modal?activeTab=readme) to show modals
 
 ## Installation
 
@@ -24,7 +26,9 @@ npm run start
 
 ## Design
 
-To preview the mock design of the project please go [HERE](https://excalidraw.com/#json=1khKUGkPXCCThRYMDYCfg,jUzNpKJuQGPWHkkKyfryQw)
+- To preview the mock design of the project please go [HERE](https://excalidraw.com/#json=1khKUGkPXCCThRYMDYCfg,jUzNpKJuQGPWHkkKyfryQw)
+
+- The website will switch dark and light theme automatically based on system preferences.
 
 ## examples for my self remove in final version
 
