@@ -24,7 +24,6 @@ const Root = () => {
 	}, [location]);
 
 	useEffect(() => {
-		console.log(previousLocation, location.pathname);
 		if (previousLocation === "/" && isAuthenticated) {
 			navigate("/flights");
 			toast.success("Welcome back!");

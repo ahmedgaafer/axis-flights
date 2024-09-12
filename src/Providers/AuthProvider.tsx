@@ -38,7 +38,6 @@ const AuthContext = createContext<TAuthContext | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const [user, setUser] = useLocalStorage<TAuthResponse | null>("User", null);
-
 	const navigate = useNavigate();
 
 	const signOut = () => {
@@ -70,15 +69,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		authRouter.interceptors.response.use(
 			(response) => response,
 			async (error) => {
-				toast.error(error.response.data.message);
-
-				console.log(error);
 				const originalRequest = error.config;
 				const ErrorCode: keyof typeof ErrorCodes = error.response.data.code;
 
 				if (error.status === 401) {
 					// auto-refresh
-
 					if (ErrorCodes[ErrorCode] === "unauthenticated") {
 						try {
 							if (error.config.url === "/auth/refresh") {
@@ -88,6 +83,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 							const tokens = await refresh();
 
 							originalRequest.headers.Authorization = `Bearer ${tokens.token}`;
+
 							return authRouter(originalRequest);
 						} catch {
 							signOut();
@@ -95,6 +91,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 					}
 
 					if (ErrorCodes[ErrorCode] === "badCredentials") {
+						console.log("bad credentials");
 						return Promise.reject(error);
 					}
 				}
@@ -106,7 +103,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		return () => {
 			authRouter.interceptors.response.clear();
 		};
-	}, [refresh, signOut]);
+	}, [user]);
 
 	useEffect(() => {
 		if (user?.token) {

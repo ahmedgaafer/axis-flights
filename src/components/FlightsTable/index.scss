@@ -1,0 +1,44 @@
+.flights-table {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+
+	table {
+		width: 95%;
+		border-collapse: collapse;
+		text-align: center;
+		table-layout: fixed;
+
+		th,
+		td {
+			border: 1px solid var(--border-color);
+			padding: 10px;
+		}
+
+		th {
+			background-color: var(--background-color-contrast);
+			color: white;
+		}
+
+		tbody {
+			display: block;
+			height: 60dvh; /* Set the height of the tbody for scrolling */
+			overflow-y: auto; /* Allow vertical scrolling */
+
+			td {
+				padding: 10px;
+				text-align: left;
+				border-bottom: 1px solid #ddd;
+			}
+		}
+
+		thead,
+		tbody tr {
+			display: table;
+			width: 100%;
+			table-layout: fixed; /* Ensures column widths match between thead and tbody */
+		}
+	}
+}

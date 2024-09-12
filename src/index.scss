@@ -67,6 +67,19 @@ body {
 	&::after {
 		box-sizing: border-box;
 	}
+
+	&::-webkit-scrollbar {
+		width: 3px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--background-color-contrast);
+		border-radius: 5px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #f1f1f1; /* Background of the scrollbar track */
+	}
 }
 
 @include testing.Testing(false);
