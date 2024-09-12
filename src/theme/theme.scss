@@ -105,9 +105,15 @@
 	$accent-light-80: getShade($accentColor, -80%);
 	$accent-light-90: getShade($accentColor, -90%);
 
+	$danger-light-30: getShade($dangerColor, -30%);
+	$danger-dark-30: getShade($dangerColor, 30%);
+
 	:root {
 		--text-color: #{$primary};
+		--text-color-inverse: #{$secondary};
+
 		--background-color: #{$secondary};
+		--background-color-contrast: #{$accent-dark-50};
 
 		--button-text-color: #{$primary};
 		--button-border-color: #{$primary};
@@ -115,11 +121,16 @@
 		--button-hover-color: #{$accent-light-20};
 		--button-active-color: #{$accent-dark-10};
 
+		--border-color: #{$accent};
+
 		--shadow-color: #{$accent-light-10};
 
 		--danger-color: #{$dangerColor};
 		--info-color: #{$infoColor};
 		--success-color: #{$successColor};
+
+		--danger-color-light: #{$danger-light-30};
+		--danger-color-dark: #{$danger-dark-30};
 
 		--svg-bg-color: #{$primary-light-30};
 	}

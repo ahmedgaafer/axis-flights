@@ -1,58 +1,56 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import {
-	createBrowserRouter,
-	Navigate,
-	Outlet,
-	RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import "./index.scss";
 import NotFound from "./pages/NotFound/index.tsx";
 import FlightDashboard from "./pages/FlightsDashboard/index.tsx";
-import Landing from "./pages/Landing/index.tsx";
-import About from "./pages/About/index.tsx";
-import { AuthProvider, useAuth } from "./Providers/AuthProvider.tsx";
 
-const AuthElement = () => {
-	const { isAuthenticated } = useAuth();
-	return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
-};
+import About from "./pages/About/index.tsx";
+
+import { AuthProvider } from "./Providers/AuthProvider.tsx";
+import ErrorBoundary from "./components/ErrorBoundray/index.tsx";
+import Nav from "./components/Nav/index.tsx";
+import Landing from "./pages/Landing/index.tsx";
+import AuthedRoot from "./pages/Root.tsx";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <AuthProvider />,
+		element: (
+			<AuthProvider>
+				<Nav />
+				<Outlet />{" "}
+			</AuthProvider>
+		),
 		children: [
 			{
 				path: "",
-				element: <Landing />,
-			},
-			{
-				path: "flights",
-				element: <AuthElement />,
+				element: <AuthedRoot />,
+
 				children: [
 					{
-						path: "",
+						path: "/flights",
 						element: <FlightDashboard />,
+					},
+					{
+						path: "/about",
+						element: <About />,
 					},
 				],
 			},
 			{
-				path: "about",
-				element: <About />,
+				path: "*",
+				element: <NotFound />,
 			},
 		],
-	},
-
-	{
-		path: "*",
-		element: <NotFound />,
 	},
 ]);
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
-		<RouterProvider router={router} />
+		<ErrorBoundary>
+			<RouterProvider router={router} />
+		</ErrorBoundary>
 	</StrictMode>
 );

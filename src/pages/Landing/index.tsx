@@ -1,33 +1,13 @@
-import Button from "../../components/Buttons";
 import LandingSVG from "../../assets/landing.svg?react";
-import { useAuth } from "../../Providers/AuthProvider";
-import authRouter from "../../services/router.services";
-
+import "./index.scss";
 const Landing = () => {
-	const { signIn } = useAuth();
-
 	return (
-		<div>
-			<div className="actions">
-				<Button
-					onClick={() => {
-						authRouter.get("/flights").then(console.log);
-					}}
-				>
-					Register
-				</Button>
-				<Button
-					onClick={() => {
-						signIn("john@doe.com", "123");
-					}}
-				>
-					Login
-				</Button>
-			</div>
-			<div className="page">
-				Welcome
-				<LandingSVG width={100} />
-			</div>
+		<div className="landing">
+			<section>
+				<h1>Welcome to axis flights</h1>
+				<h5>Were all the data are gathered in one place.</h5>
+			</section>
+			<LandingSVG />
 		</div>
 	);
 };

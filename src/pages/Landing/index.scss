@@ -1,0 +1,33 @@
+.landing {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100vw;
+	padding: 20px;
+
+	svg {
+		flex-grow: 3;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.landing {
+		flex-direction: column;
+
+		section {
+			text-align: center;
+			max-height: 16dvh;
+
+			h1 {
+				font-size: 2rem;
+			}
+		}
+
+		svg {
+			max-width: 80vw;
+			max-height: 60dvh;
+		}
+	}
+}

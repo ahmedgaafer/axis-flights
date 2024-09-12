@@ -1,0 +1,17 @@
+@use "../../theme/utilities.scss" as *;
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: $push-unit * 2;
+	label {
+		margin-bottom: $push-unit * 0.5;
+	}
+
+	input {
+		padding: $push-unit;
+	}
+	.error-message {
+		color: var(--danger-color);
+	}
+}

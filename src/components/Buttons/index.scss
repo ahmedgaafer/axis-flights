@@ -5,8 +5,9 @@
 	$background-color,
 	$border-color,
 	$shadow-color,
-	$hover-color,
-	$active-color
+	$hover-bg-color,
+	$active-bg-color,
+	$hover-color
 ) {
 	background-color: $background-color;
 	color: $color;
@@ -15,14 +16,19 @@
 	filter: drop-shadow(3px 3px 3px $shadow-color);
 
 	&:hover {
-		background-color: $hover-color;
+		background-color: $hover-bg-color;
+		border-color: $hover-color;
+		color: $hover-color;
 	}
 
 	&:active {
 		translate: 3px 3px;
 
 		filter: drop-shadow(0 0 0 $shadow-color);
-		background-color: $active-color;
+		background-color: $active-bg-color;
+
+		border-color: $hover-color;
+		color: $hover-color;
 	}
 }
 
@@ -38,17 +44,18 @@ button {
 
 	&:focus,
 	&:focus-visible {
-		outline: 4px auto -webkit-focus-ring-color;
+		outline: none;
 	}
 
 	&.primary {
 		@include ButtonSkin(
-			var(--text-color),
+			var(--text-color-inverse),
 			var(--button-background-color),
-			var(--button-border-color),
+			var(--text-color-inverse),
 			var(--shadow-color),
 			var(--button-hover-color),
-			var(--button-active-color)
+			var(--button-active-color),
+			var(--text-color-inverse)
 		);
 	}
 
@@ -58,8 +65,9 @@ button {
 			#00000000,
 			var(--button-border-color),
 			var(--shadow-color),
-			var(--button-hover-color),
-			var(--button-active-color)
+			#eaeaea90,
+			var(--button-active-color),
+			var(--text-color-inverse)
 		);
 	}
 
@@ -69,8 +77,26 @@ button {
 			var(--danger-color),
 			var(--button-border-color),
 			var(--danger-color),
-			var(--button-hover-color),
-			var(--button-active-color)
+			var(--danger-color-light),
+			var(--danger-color-dark),
+			var(--text-color)
 		);
+	}
+
+	&.circle {
+		border-radius: 50%;
+		width: 1.1rem;
+		height: 1.1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		padding: 0;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	button {
+		padding: $push-unit;
 	}
 }

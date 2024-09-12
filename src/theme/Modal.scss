@@ -1,0 +1,69 @@
+@use "./utilities.scss" as *;
+
+.ReactModal__Overlay {
+	background-color: rgba(#aeaeae, 0.5) !important;
+	transition: all 350ms ease-in-out;
+	opacity: 0;
+
+	.ReactModal__Content {
+		transition: all 350ms ease-in-out;
+		inset: 10dvw !important;
+		background-color: var(--background-color) !important;
+		border-color: var(--text-color);
+
+		transform: translateY(-100%);
+
+		.c-head {
+			display: flex;
+			justify-content: space-between;
+
+			h1 {
+				flex-grow: 3;
+				text-align: center;
+			}
+
+			button {
+				width: 1.5rem;
+				height: 1.5rem;
+				svg {
+					font-size: 2rem;
+				}
+			}
+		}
+
+		.c-body {
+			height: 80%;
+			form {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+
+				.form-actions {
+					display: flex;
+					flex-direction: row;
+					button {
+						flex-grow: 1;
+						&:first-child {
+							margin-right: $push-unit * 3;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.ReactModal__Overlay--after-open {
+	opacity: 1;
+	.ReactModal__Content {
+		transform: translateY(0);
+	}
+}
+
+.ReactModal__Overlay--before-close {
+	opacity: 0;
+	.ReactModal__Content {
+		transform: translateY(-100%);
+	}
+}

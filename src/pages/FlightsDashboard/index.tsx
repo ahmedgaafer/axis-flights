@@ -1,7 +1,7 @@
 import React from "react";
 
 const FlightDashboard: React.FC = () => {
-	return <div>FlightDashboard</div>;
+	return <>FlightDashboard</>;
 };
 
 export default FlightDashboard;

@@ -1,1 +1,9 @@
 $push-unit: 0.5rem;
+
+@mixin hover() {
+	cursor: pointer;
+	&:hover {
+		opacity: 0.8;
+		filter: drop-shadow(1px 1px 3px var(--shadow-color));
+	}
+}

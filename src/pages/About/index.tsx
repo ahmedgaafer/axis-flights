@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 const attributionList = [
 	{
@@ -23,7 +23,7 @@ const About: React.FC = () => {
 	return (
 		<div>
 			{attributionList.map((attribution) => (
-				<>
+				<Fragment key={attribution.illustrationLink}>
 					<a
 						href={attribution.illustrationLink}
 						className="text-underline font-size-sm"
@@ -45,7 +45,7 @@ const About: React.FC = () => {
 					>
 						{attribution.websiteName}
 					</a>
-				</>
+				</Fragment>
 			))}
 		</div>
 	);

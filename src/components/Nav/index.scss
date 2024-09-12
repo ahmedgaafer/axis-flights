@@ -1,0 +1,124 @@
+@use "../../theme/utilities.scss" as *;
+
+$anchorTags: "--user", "";
+
+@each $anchor in $anchorTags {
+	.anchor#{$anchor} {
+		@include hover;
+		anchor-name: #{$anchor};
+		width: 30px;
+		height: 30px;
+
+		text-align: center;
+		border: 1px solid var(--border-color);
+		border-radius: 50%;
+	}
+
+	.anchored#{$anchor} {
+		background-color: var(--background-color-contrast);
+		width: 10dvw;
+		min-height: 15dvh;
+		padding: $push-unit;
+		border-radius: 5px;
+
+		position-anchor: #{$anchor};
+
+		position: fixed;
+		top: calc(anchor(bottom) + 13px);
+		right: calc(anchor(right));
+
+		display: none;
+		&.open {
+			display: block;
+			min-width: 150px;
+		}
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: -5px;
+			right: 5px;
+
+			width: 20px;
+			height: 20px;
+
+			background-color: var(--background-color-contrast);
+
+			transform: rotate(45deg);
+		}
+	}
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	border-bottom: 1px solid var(--border-color);
+	background-color: var(--background-color);
+
+	svg {
+		width: 30px;
+	}
+	.nav-left {
+		display: flex;
+		align-items: center;
+		flex-grow: 1;
+		justify-content: space-around;
+		border-right: 1px solid var(--border-color);
+
+		span {
+			@include hover;
+		}
+	}
+
+	.nav-right {
+		display: flex;
+		align-items: center;
+		flex-grow: 15;
+		margin: 0 $push-unit;
+
+		&:has(.auth-links) {
+			justify-content: space-between;
+
+			a {
+				margin: 0 $push-unit;
+				//Style the a tag to look like a nav button
+				font-size: 1.1rem;
+
+				&:visited {
+					color: var(--text-color);
+				}
+
+				@include hover;
+
+				&.active {
+					text-decoration: underline;
+					filter: drop-shadow(0 0 10px var(--shadow-color));
+				}
+
+				&:not(.active) {
+					text-decoration: none;
+				}
+			}
+
+			.anchored--user {
+				text-align: center;
+
+				div {
+					margin: $push-unit * 2 0;
+					border-bottom: 1px solid var(--text-color);
+					padding-bottom: $push-unit;
+				}
+			}
+		}
+
+		&:has(.unauth-links) {
+			justify-content: flex-end;
+
+			button {
+				margin: 0 $push-unit;
+			}
+		}
+	}
+}
