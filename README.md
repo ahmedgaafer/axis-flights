@@ -32,13 +32,14 @@ and wait for it work. Then in another terminal cd to the same path
 npx tsx dataGenerator.ts
 ```
 
-1. to run the app (Front & back end) run the following command
+4. to run the app (Front & back end) run the following command
+   > Make sure that you close the server opened in step 3
 
 ```shell
 npm run start
 ```
 
-4. Open the front-end app from [HERE](http://localhost:5001/).
+5. Open the front-end app from [HERE](http://localhost:5001/).
 
 ## Design
 
