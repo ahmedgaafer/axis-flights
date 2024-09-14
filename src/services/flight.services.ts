@@ -83,12 +83,10 @@ export function fileToDataUri(file: File) {
 	});
 }
 
-export const handleFormSubmit = (
+export const handleFormSubmit = async (
 	data: TFlightForm,
-	label: "add" | "edit",
-	cb: () => void
+	label: "add" | "edit"
 ) => {
-	console.log(data);
 	if (data.img?.length > 0) {
 		const formData = new FormData();
 
@@ -97,41 +95,55 @@ export const handleFormSubmit = (
 		formData.append("capacity", data.capacity.toString());
 		formData.append("departureDate", data.departureDate);
 		if (label === "add") {
-			addFlightWithPhoto(formData)
-				.then((response) => {
-					toast.success("Flight added successfully");
-				})
-				.catch((error) => {
-					console.log(error);
-				});
+			const response = await addFlightWithPhoto(formData);
+
+			if (response.status === 201) {
+				toast.success("Flight added successfully");
+				return { status: true, data: response.data, type: "add" };
+			} else {
+				return { status: false, message: response.statusText, type: "add" };
+			}
 		} else if (label === "edit") {
-			updateFlightWithPhoto(data.id, formData);
-			toast.success("Flight updated successfully");
+			const response = await updateFlightWithPhoto(data.id, formData);
+
+			if (response.status === 200) {
+				toast.success("Flight updated successfully");
+				return {
+					status: true,
+					data: response.data,
+					type: "edit",
+					isPhoto: true,
+				};
+			} else {
+				return { status: false, message: response.statusText, type: "edit" };
+			}
 		}
 	} else {
 		if (label === "add") {
-			addFlights(data)
-				.then((response) => {
-					toast.success("Flight added successfully");
-				})
-				.catch((error) => {
-					console.log(error);
-				});
+			const response = await addFlights(data);
+
+			if (response.status === 201) {
+				toast.success("Flight added successfully");
+				return { status: true, data: response.data, type: "add" };
+			} else {
+				return { status: false, message: response.statusText, type: "add" };
+			}
 		} else {
 			const updatedData = {
 				code: data.code,
 				capacity: data.capacity,
 				departureDate: data.departureDate,
 			};
-			updateFlights(data.id, updatedData)
-				.then((response) => {
-					toast.success("Flight updated successfully");
-				})
-				.catch((error) => {
-					console.log(error);
-				});
+			const response = await updateFlights(data.id, updatedData);
+
+			if (response.status === 200) {
+				toast.success("Flight updated successfully");
+				return { status: true, data: response.data, type: "edit" };
+			} else {
+				return { status: false, message: response.statusText, type: "edit" };
+			}
 		}
 	}
 
-	cb();
+	return { status: false, message: "Something went wrong" };
 };

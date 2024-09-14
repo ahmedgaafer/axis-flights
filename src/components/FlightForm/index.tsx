@@ -12,7 +12,6 @@ import Button from "../Buttons";
 import ReactImageUploading from "react-images-uploading";
 import "./index.scss";
 import { MdClose } from "react-icons/md";
-import { toast } from "react-toastify";
 import { useEffect } from "react";
 
 const FlightFormSchema = flightsSchema
@@ -30,6 +29,14 @@ const FlightFormSchema = flightsSchema
 				});
 			}
 		}
+
+		if (!/^[a-zA-Z]+$/.test(data.code)) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message: "Code can only contain letters",
+				path: ["code"],
+			});
+		}
 	});
 
 export type TFlightForm = z.infer<typeof FlightFormSchema>;
@@ -37,7 +44,7 @@ export type TFlightForm = z.infer<typeof FlightFormSchema>;
 type TFormProps = {
 	flightData?: TFlightForm;
 	label: string;
-	onSubmit: (data: TFlightForm) => void;
+	onSubmit: (data: TFlightForm) => Promise<void>;
 };
 
 const FlightForm = (props: TFormProps) => {

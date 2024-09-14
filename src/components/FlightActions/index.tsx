@@ -8,7 +8,8 @@ import {
 	getFlightImage,
 	TFlight,
 } from "../../services/flight.services";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 const FlightActions = ({
 	flight,
@@ -19,6 +20,10 @@ const FlightActions = ({
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [img, setImage] = useState<any>(null);
+	const imgRef = useRef<HTMLImageElement>(null);
+	const parentRef = useRef<HTMLDivElement>(null);
+
+	useClickOutside(imgRef, () => setIsOpen(false), isOpen, parentRef);
 
 	useEffect(() => {
 		if (isOpen && !img) {
@@ -38,7 +43,6 @@ const FlightActions = ({
 	}, [isOpen]);
 
 	const handleClick = () => {
-		setIsOpen(false);
 		const answer = confirm(
 			`Are you sure you want to delete this flight (${flight.code})? `
 		);
@@ -50,20 +54,21 @@ const FlightActions = ({
 
 	return (
 		<div className="flight-actions">
-			<IoMdImages
-				onClick={() => setIsOpen((prev) => !prev)}
-				className={`flight-img ${!flight.img ? "disabled" : ""}`}
-			/>
+			<span ref={parentRef}>
+				<IoMdImages
+					onClick={() => setIsOpen((prev) => !prev)}
+					className={`flight-img ${!flight.img ? "disabled" : ""}`}
+				/>
+			</span>
 			<BiSolidEditAlt
 				onClick={() => {
-					setIsOpen(false);
 					onEditFlight(flight);
 				}}
 			/>
 			<MdDelete onClick={handleClick} className="delete" />
 
 			{isOpen && (
-				<div className="overlay">
+				<div className="overlay" ref={imgRef}>
 					{img && <img src={img} alt="flight image" />}
 				</div>
 			)}

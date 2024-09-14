@@ -18,7 +18,7 @@ import Button from "../../components/Buttons";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { toast } from "react-toastify";
 import Modal from "react-modal";
-import FlightForm from "../../components/FlightForm";
+import FlightForm, { TFlightForm } from "../../components/FlightForm";
 
 export type TPagination = {
 	page: number;
@@ -141,6 +141,44 @@ const FlightDashboard = () => {
 		setModal({ type: "add" });
 	};
 
+	const handleSubmitFlow = async (data: TFlightForm) => {
+		const response = await handleFormSubmit(data, modal.type!);
+		if (response.status) {
+			toast.success(response.message);
+			console.log(response.data);
+
+			if (modal.type === "add") {
+				setSearchParams({
+					page: "1",
+					size: size.toString(),
+				});
+			}
+
+			if (modal.type === "edit") {
+				const updatedFlights = flights?.resources.map((flight) => {
+					if (flight.id === response.data.id) {
+						if (response.isPhoto) {
+							return { ...response.data, img: "Replaced" };
+						}
+
+						return response.data;
+					} else {
+						return flight;
+					}
+				});
+
+				const newFlights = {
+					...flights,
+					resources: updatedFlights,
+				} as TFlightsData;
+
+				setFlights(newFlights);
+			}
+		}
+
+		setModal({ type: null });
+	};
+
 	return (
 		<>
 			<h1>FlightDashboard</h1>
@@ -207,9 +245,7 @@ const FlightDashboard = () => {
 			>
 				<FlightForm
 					label={modal.type!}
-					onSubmit={(data) =>
-						handleFormSubmit(data, modal.type!, () => setModal({ type: null }))
-					}
+					onSubmit={handleSubmitFlow}
 					flightData={modal.flight!}
 				/>
 			</Modal>

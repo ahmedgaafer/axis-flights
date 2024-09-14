@@ -16,7 +16,21 @@
 npm i
 ```
 
-3. to run the app (Front & back end) run the following command
+3. I Created a simple data generation script [Here](./dataGenerator.ts) To use it type this in console
+
+> NOTE: You can change the generator settings through the script line 152
+
+```shell
+npm run server:dev
+```
+
+and wait for it work. Then in another terminal
+
+```shell
+npx tsx dataGenerator.ts
+```
+
+1. to run the app (Front & back end) run the following command
 
 ```shell
 npm run start
@@ -26,16 +40,6 @@ npm run start
 
 ## Design
 
-- To preview the mock design of the project please go [HERE](https://excalidraw.com/#json=1khKUGkPXCCThRYMDYCfg,jUzNpKJuQGPWHkkKyfryQw)
+- To preview the mock design of the project please go [HERE](https://excalidraw.com/#json=jnOg1MtuUwiYPrOdRZB5Y,dZK930roeIFZrARoDzPhUg)
 
 - The website will switch dark and light theme automatically based on system preferences.
-
-## examples for my self remove in final version
-
-[react upload](https://codesandbox.io/p/sandbox/react-images-uploading-demo-typescript-forked-87kvdp?file=%2Fsrc%2FApp.tsx%3A14%2C15-14%2C24)
-
-[loop video](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#loop)
-
-know bugs:
-
-- use is undefined the moment I refresh
