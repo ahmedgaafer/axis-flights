@@ -38,6 +38,7 @@ const FlightActions = ({
 	}, [isOpen]);
 
 	const handleClick = () => {
+		setIsOpen(false);
 		const answer = confirm(
 			`Are you sure you want to delete this flight (${flight.code})? `
 		);
@@ -53,7 +54,12 @@ const FlightActions = ({
 				onClick={() => setIsOpen((prev) => !prev)}
 				className={`flight-img ${!flight.img ? "disabled" : ""}`}
 			/>
-			<BiSolidEditAlt onClick={() => onEditFlight(flight)} />
+			<BiSolidEditAlt
+				onClick={() => {
+					setIsOpen(false);
+					onEditFlight(flight);
+				}}
+			/>
 			<MdDelete onClick={handleClick} className="delete" />
 
 			{isOpen && (
