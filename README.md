@@ -13,6 +13,8 @@
 2. Use the following command
 
 ```shell
+git clone https://github.com/ahmedgaafer/axis-flights.git
+cd axis-flights
 npm i
 ```
 
@@ -24,7 +26,7 @@ npm i
 npm run server:dev
 ```
 
-and wait for it work. Then in another terminal
+and wait for it work. Then in another terminal cd to the same path
 
 ```shell
 npx tsx dataGenerator.ts

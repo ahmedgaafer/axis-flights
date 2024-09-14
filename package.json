@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "server": "flights-server --auth --noreadme",
-    "server:dev": "flights-server --noreadme",
+    "server:dev": "flights-server --noreadme --verbose",
     "start": "concurrently \"npm:server\" \"npm:dev\"",
     "preview": "vite preview"
   },

@@ -37,6 +37,14 @@ function createFormDataWithSVG(filePath, flight: TFlightForm) {
 	});
 }
 
+function formatDate(date) {
+	const year = date.getFullYear();
+	const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+	const day = String(date.getDate()).padStart(2, "0");
+
+	return `${year}-${month}-${day}`;
+}
+
 const generateFlights = async (numberOfFlights: number, isImage: boolean) => {
 	const newCodes: string[] = [];
 	const existingCodes: string[] = [];
@@ -58,7 +66,7 @@ const generateFlights = async (numberOfFlights: number, isImage: boolean) => {
 		let flight = {
 			code: flightCode,
 			capacity: 50,
-			departureDate: new Date().toLocaleDateString(),
+			departureDate: formatDate(new Date()),
 		} as TFlightForm;
 
 		try {
