@@ -6,5 +6,75 @@ h1 {
 }
 
 .flights {
-	height: 82dvh;
+	.flights-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: $push-unit * 2 $push-unit * 4;
+
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: $push-unit;
+			gap: $push-unit;
+			font-size: 1.25rem;
+		}
+
+		form {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			gap: $push-unit;
+
+			input {
+				height: 2.5rem;
+			}
+
+			.form-group {
+				flex-direction: row;
+				align-items: center;
+				margin-bottom: 0;
+				gap: $push-unit * 3;
+			}
+		}
+	}
+	.no-records {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 50dvh;
+		font-size: 3rem;
+		text-align: center;
+		margin-top: $push-unit * 4;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#root > h1 {
+		margin-bottom: $push-unit;
+		font-size: 1.5rem;
+	}
+	.flights {
+		.flights-header {
+			flex-direction: column;
+			gap: $push-unit * 2;
+			margin: 0 $push-unit;
+
+			span {
+				width: 100%;
+			}
+			button {
+				font-size: 1rem;
+				width: 100%;
+			}
+			form {
+				input {
+					height: 2.2rem;
+					width: 100px;
+				}
+			}
+		}
+	}
 }

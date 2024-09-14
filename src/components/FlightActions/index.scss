@@ -1,0 +1,84 @@
+@use "../../theme/utilities.scss" as *;
+
+.flight-actions {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	position: relative;
+
+	svg {
+		cursor: pointer;
+		border: 1px solid var(--border-color);
+
+		border-radius: 20px;
+		padding: 0.2rem;
+
+		width: 1.5rem;
+		height: 1.5rem;
+
+		&.disabled {
+			opacity: 0.5;
+
+			pointer-events: none;
+		}
+
+		&:not(.disabled) {
+			@include hover();
+		}
+
+		&.delete {
+			color: white;
+			background-color: var(--danger-color);
+			border-color: white;
+		}
+	}
+
+	.overlay {
+		position: absolute;
+		top: 0;
+		right: 230px;
+		width: 180px;
+		height: 180px;
+		background-color: var(--background-color-contrast);
+		z-index: 2;
+		border: 1px solid var(--border-color);
+		border-radius: 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&::before {
+			content: "";
+			position: absolute;
+			top: 5px;
+			right: -10px;
+
+			background-color: var(--background-color-contrast);
+			border-right: 1px solid var(--border-color);
+			border-top: 1px solid var(--border-color);
+			width: 20px;
+			height: 20px;
+			transform: rotate(45deg);
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.flight-actions {
+		.overlay {
+			top: unset;
+			left: unset;
+			bottom: 0;
+			right: 100px;
+
+			width: 165px;
+			height: 165px;
+
+			&::before {
+				top: unset;
+
+				bottom: 5px;
+			}
+		}
+	}
+}

@@ -35,3 +35,7 @@ npm run start
 [react upload](https://codesandbox.io/p/sandbox/react-images-uploading-demo-typescript-forked-87kvdp?file=%2Fsrc%2FApp.tsx%3A14%2C15-14%2C24)
 
 [loop video](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#loop)
+
+know bugs:
+
+- use is undefined the moment I refresh

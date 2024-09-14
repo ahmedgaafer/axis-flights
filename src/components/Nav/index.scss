@@ -22,6 +22,7 @@ $anchorTags: "--user", "";
 		border-radius: 5px;
 
 		position-anchor: #{$anchor};
+		z-index: 1;
 
 		position: fixed;
 		top: calc(anchor(bottom) + 13px);
@@ -85,6 +86,7 @@ nav {
 				margin: 0 $push-unit;
 				//Style the a tag to look like a nav button
 				font-size: 1.1rem;
+				color: var(--text-color);
 
 				&:visited {
 					color: var(--text-color);

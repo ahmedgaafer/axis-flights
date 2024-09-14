@@ -1,8 +1,10 @@
 @use "../../theme/utilities.scss" as *;
+//								  pagination + Header + Nav +Form
+$top-content-height: 112px + 36px + 51px + 88px;
 
 .flights-cards {
 	overflow-y: auto;
-	height: 100%;
+	height: calc(98dvh - $top-content-height);
 
 	.flight-card {
 		display: flex;
@@ -26,15 +28,6 @@
 			span {
 				margin: 0 $push-unit;
 			}
-		}
-
-		.flight-actions {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-around;
-			align-items: center;
-			width: 100%;
-			margin-top: $push-unit;
 		}
 	}
 }

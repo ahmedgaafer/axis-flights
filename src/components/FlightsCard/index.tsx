@@ -1,15 +1,17 @@
 import { TFlightsData, TPagination } from "../../pages/FlightsDashboard";
+import { TFlight } from "../../services/flight.services";
+import FlightActions from "../FlightActions";
 import Pagination from "../Pagination";
 import "./index.scss";
 
 const FlightsCard = ({
 	pagination,
-
 	flights,
+	onEditFlight,
 }: {
 	pagination: TPagination;
-
 	flights: TFlightsData;
+	onEditFlight: (flight: TFlight) => void;
 }) => {
 	const pageCount = Math.ceil(flights.count / pagination.size);
 	const shouldRender = pageCount > 0 && flights.count > 0;
@@ -27,11 +29,7 @@ const FlightsCard = ({
 								<span>Departure: {flight.departureDate}</span>
 								<span>Status: {flight.status}</span>
 							</div>
-							<div className="flight-actions">
-								<span>a</span>
-								<span>b</span>
-								<span>c</span>
-							</div>
+							<FlightActions flight={flight} onEditFlight={onEditFlight} />
 						</div>
 					))}
 				</div>
