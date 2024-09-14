@@ -88,7 +88,9 @@ const generateFlights = async (numberOfFlights: number, isImage: boolean) => {
 			const err = e as AxiosError;
 			delete err.stack;
 
-			console.log(`Flight with code ${flightCode} already exists`);
+			console.log(
+				`Flight with code ${flightCode} already exists. Or I didn't handle this error 🤫`
+			);
 
 			existingCodes.push(flightCode);
 
