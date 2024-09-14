@@ -181,12 +181,16 @@ const FlightDashboard = () => {
 
 	return (
 		<>
-			<h1>FlightDashboard</h1>
+			<h1>Flight Dashboard</h1>
 
 			<div className={`flights ${isMobile ? "mobile" : ""}`}>
 				<div className="flights-header">
 					<span>
-						<form>
+						<form
+							onSubmit={(e) => {
+								e.preventDefault();
+							}}
+						>
 							<FormInput
 								name="code"
 								control={control}

@@ -1,11 +1,13 @@
 @use "../../theme/utilities.scss" as *;
 
 .flight-actions {
+	anchor-name: --imgPreview;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 0.5rem;
 	position: relative;
+
+	gap: 0.9rem;
 
 	svg {
 		cursor: pointer;
@@ -34,10 +36,17 @@
 		}
 	}
 
+	> span {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.overlay {
 		position: absolute;
 		top: 0;
-		right: 230px;
+		right: 80%;
+
 		width: 180px;
 		height: 180px;
 		background-color: var(--background-color-contrast);

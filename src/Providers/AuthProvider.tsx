@@ -132,6 +132,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 
 		setUser(response.data);
+
+		navigate("/flights");
 	};
 
 	return (

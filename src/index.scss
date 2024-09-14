@@ -82,4 +82,9 @@ body {
 	}
 }
 
+#root {
+	overflow-y: auto;
+	height: 100dvh;
+}
+
 @include testing.Testing(false);

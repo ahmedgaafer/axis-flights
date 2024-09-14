@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import "./index.scss";
 
 const attributionList = [
 	{
@@ -21,9 +22,12 @@ const attributionList = [
 
 const About: React.FC = () => {
 	return (
-		<div>
+		<div className="about">
+			<h1>About</h1>
+			Flight Dashboard is created by Ahmed Gaafer :D
+			<h3>Attributions</h3>
 			{attributionList.map((attribution) => (
-				<Fragment key={attribution.illustrationLink}>
+				<span key={attribution.illustrationLink}>
 					<a
 						href={attribution.illustrationLink}
 						className="text-underline font-size-sm"
@@ -45,7 +49,7 @@ const About: React.FC = () => {
 					>
 						{attribution.websiteName}
 					</a>
-				</Fragment>
+				</span>
 			))}
 		</div>
 	);

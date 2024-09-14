@@ -142,10 +142,13 @@ const FlightForm = (props: TFormProps) => {
 						>
 							{imageList.length === 0 && (
 								<div>
-									Drop or Click{" "}
+									Drop Image or Click{" "}
 									<span className="upload__image-text" onClick={onImageUpload}>
 										Here
 									</span>
+									<h6>
+										<strong>Accepted Formats:</strong> .SVG
+									</h6>
 								</div>
 							)}
 
