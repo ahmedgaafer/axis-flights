@@ -56,16 +56,22 @@ const FlightActions = ({
 		<div className="flight-actions">
 			<span ref={parentRef}>
 				<IoMdImages
+					title="View image"
 					onClick={() => setIsOpen((prev) => !prev)}
 					className={`flight-img ${!flight.img ? "disabled" : ""}`}
 				/>
 			</span>
 			<BiSolidEditAlt
+				title="Edit flight"
 				onClick={() => {
 					onEditFlight(flight);
 				}}
 			/>
-			<MdDelete onClick={handleClick} className="delete" />
+			<MdDelete
+				title="Delete flight"
+				onClick={handleClick}
+				className="delete"
+			/>
 
 			{isOpen && (
 				<div className="overlay" ref={imgRef}>
