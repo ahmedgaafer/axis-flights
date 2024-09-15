@@ -1,13 +1,22 @@
 # Axis flights
 
-## Used UI packages:
+## Introduction
 
-- [react-images-uploading](https://www.npmjs.com/package/react-images-uploading): for image uploading form
-- [react-icons](https://www.npmjs.com/package/react-icons) For icons throughout the app
-- [react-toastify](https://www.npmjs.com/package/react-toastify) to show toast messages
-- [react-modal](https://www.npmjs.com/package/react-modal?activeTab=readme) to show modals
+Axis Flights is a front-end project focused on building a dynamic and user-friendly interface. The task includes several key features:
 
-## Installation
+- **Authentication**: Secure user login and management.
+- **CRUD Operations**: Full support for creating, reading, updating, and deleting data.
+- **Responsive Design**: Ensures a seamless experience across different devices and screen sizes.
+
+## prerequisites
+
+- NodeJS
+
+## Mock design
+
+![](./MockDesign.svg)
+
+## Installation & Usage
 
 1. Open terminal
 2. Use the following command

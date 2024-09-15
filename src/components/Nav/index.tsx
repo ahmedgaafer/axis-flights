@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useAuth, useUser } from "../../Providers/AuthProvider";
 import LogoSVG from "../../../public/logo.svg?react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Buttons";
 import AuthForm from "../AuthForm";
 import "./index.scss";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 const AuthedNav = () => {
 	const { signOut } = useAuth();
 	const user = useUser();
+	const menuRef = useRef<HTMLImageElement>(null);
+	const parentRef = useRef<HTMLDivElement>(null);
 
 	const [open, setOpen] = useState(false);
 	const location = useLocation(); // Get the current location
@@ -16,6 +19,8 @@ const AuthedNav = () => {
 	const isActive = (path: string) => {
 		return location.pathname === path;
 	};
+
+	useClickOutside(menuRef, () => setOpen(false), open, parentRef);
 
 	return (
 		<>
@@ -28,10 +33,14 @@ const AuthedNav = () => {
 				</Link>
 			</span>
 
-			<span className="anchor--user" onClick={() => setOpen((prev) => !prev)}>
+			<span
+				className="anchor--user"
+				onClick={() => setOpen((prev) => !prev)}
+				ref={parentRef}
+			>
 				{user.name[0]}
 			</span>
-			<span className={`anchored--user ${open ? "open" : ""}`}>
+			<span className={`anchored--user ${open ? "open" : ""}`} ref={menuRef}>
 				<div>{user.name}</div>
 
 				<Button onClick={signOut} buttonType="danger">

@@ -189,6 +189,8 @@ const FlightDashboard = () => {
 						<form
 							onSubmit={(e) => {
 								e.preventDefault();
+								console.log(e);
+								handleSubmit(handleSearchClick)();
 							}}
 						>
 							<FormInput
